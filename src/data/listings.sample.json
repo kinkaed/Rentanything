@@ -1,0 +1,86 @@
+[
+  {
+    "id": "washer",
+    "name": "Pressure Washer",
+    "category": "Tools",
+    "price": 25,
+    "rating": 4.8,
+    "reviews": 42,
+    "distance": 1.2,
+    "imageKey": "home-washer",
+    "description": "Make light work of patios, driveways and outdoor furniture. A compact pressure washer for your next weekend project.",
+    "featured": true
+  },
+  {
+    "id": "tent",
+    "name": "Camping Tent",
+    "category": "Outdoor",
+    "price": 30,
+    "rating": 4.7,
+    "reviews": 28,
+    "distance": 2.1,
+    "imageKey": "search-tent",
+    "featured": false,
+    "description": "Camping Tent available for daily rental. Sample listing."
+  },
+  {
+    "id": "drill",
+    "name": "Cordless Drill",
+    "category": "Tools",
+    "price": 15,
+    "rating": 4.9,
+    "reviews": 36,
+    "distance": 1.8,
+    "imageKey": "search-drill",
+    "featured": false,
+    "description": "Cordless Drill available for daily rental. Sample listing."
+  },
+  {
+    "id": "speaker",
+    "name": "JBL Party Speaker",
+    "category": "Electronics",
+    "price": 40,
+    "rating": 4.6,
+    "reviews": 24,
+    "distance": 3.2,
+    "imageKey": "search-speaker",
+    "featured": false,
+    "description": "JBL Party Speaker available for daily rental. Sample listing."
+  },
+  {
+    "id": "bike",
+    "name": "Mountain Bike",
+    "category": "Outdoor",
+    "price": 28,
+    "rating": 4.8,
+    "reviews": 31,
+    "distance": 2.8,
+    "imageKey": "search-bike",
+    "featured": false,
+    "description": "Mountain Bike available for daily rental. Sample listing."
+  },
+  {
+    "id": "projector",
+    "name": "Projector",
+    "category": "Electronics",
+    "price": 35,
+    "rating": 4.7,
+    "reviews": 20,
+    "distance": 2.9,
+    "imageKey": "search-projector",
+    "featured": false,
+    "description": "Projector available for daily rental. Sample listing."
+  },
+  {
+    "id": "camera",
+    "name": "Canon R6 Camera",
+    "category": "Electronics",
+    "price": 35,
+    "rating": 4.9,
+    "reviews": 68,
+    "distance": 2.4,
+    "imageKey": "home-camera",
+    "description": "Capture a special occasion or try your next creative idea with a mirrorless camera and zoom lens.",
+    "featured": true
+  }
+]

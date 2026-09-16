@@ -51,7 +51,6 @@ export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
 
   return (
     <Animated.View
-      onLayout={reveal}
       accessibilityLabel="Rent It is loading"
       accessibilityRole="progressbar"
       style={[styles.container, { opacity }]}>
@@ -61,10 +60,14 @@ export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
         accessibilityElementsHidden
         importantForAccessibility="no-hide-descendants"
         style={styles.backgroundArt}>
-        <View style={styles.peachCircle} />
-        <View style={styles.topRing} />
-        <View style={styles.creamCircle} />
-        <View style={styles.bottomRing} />
+        <Image
+          source={require('@/assets/images/splash-scenery.png')}
+          contentFit="cover"
+          style={StyleSheet.absoluteFill}
+          onLoad={reveal}
+          onError={reveal}
+        />
+        <View style={styles.backgroundTint} />
       </View>
       <Image
         source={require('@/assets/images/rent-it-logo.png')}
@@ -88,43 +91,9 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFill,
     overflow: 'hidden',
   },
-  peachCircle: {
-    position: 'absolute',
-    width: 300,
-    height: 300,
-    borderRadius: 150,
-    top: -140,
-    right: -130,
-    backgroundColor: '#FBE4D5',
-  },
-  topRing: {
-    position: 'absolute',
-    width: 330,
-    height: 330,
-    borderRadius: 165,
-    top: -135,
-    right: -125,
-    borderWidth: 1,
-    borderColor: '#EEDACA',
-  },
-  creamCircle: {
-    position: 'absolute',
-    width: 280,
-    height: 280,
-    borderRadius: 140,
-    bottom: -145,
-    left: -110,
-    backgroundColor: '#EFE8D8',
-  },
-  bottomRing: {
-    position: 'absolute',
-    width: 310,
-    height: 310,
-    borderRadius: 155,
-    bottom: -135,
-    left: -120,
-    borderWidth: 1,
-    borderColor: '#E4DCCB',
+  backgroundTint: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(250, 247, 240, 0.22)',
   },
   logo: { width: '100%', maxWidth: 280, aspectRatio: 1320 / 690 },
   tagline: { marginTop: 16, color: '#686B6C', fontSize: 16 },

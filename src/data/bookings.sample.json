@@ -1,0 +1,7 @@
+[
+  { "id": "demo-washer", "listingId": "washer", "status": "Confirmed", "startOffset": 3, "days": 3, "owner": "Mike R.", "location": "San Diego, CA" },
+  { "id": "demo-tent", "listingId": "tent", "status": "Upcoming", "startOffset": 10, "days": 3, "owner": "Sarah T.", "location": "San Diego, CA" },
+  { "id": "demo-camera", "listingId": "camera", "status": "Pending", "startOffset": 18, "days": 3, "owner": "Alex C.", "location": "San Diego, CA" },
+  { "id": "demo-drill", "listingId": "drill", "status": "Completed", "startOffset": -10, "days": 3, "owner": "David K.", "location": "San Diego, CA" },
+  { "id": "demo-bike", "listingId": "bike", "status": "Cancelled", "startOffset": -5, "days": 2, "owner": "Jamie L.", "location": "San Diego, CA" }
+]

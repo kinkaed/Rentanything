@@ -24,6 +24,14 @@
     "plugins": [
       "expo-router",
       [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose photos of items you want to rent out.",
+          "cameraPermission": "Take photos of items you want to rent out.",
+          "microphonePermission": false
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "backgroundColor": "#FAF7F0",

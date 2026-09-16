@@ -26,6 +26,10 @@ export default function RootLayout() {
           <Stack.Screen name="login" />
           <Stack.Screen name="home" />
           <Stack.Screen name="search" />
+          <Stack.Screen name="listing" />
+          <Stack.Screen name="listing-details" />
+          <Stack.Screen name="profile" />
+          <Stack.Screen name="booking" />
         </Stack>
         <Modal
           visible={showStartupSplash}
