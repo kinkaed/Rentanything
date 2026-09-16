@@ -3,10 +3,10 @@ import { Image } from 'expo-image';
 import * as NativeSplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Platform, StyleSheet, Text } from 'react-native';
+import { AccessibilityInfo, Animated, Platform, StyleSheet, Text, View } from 'react-native';
 
 export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
-  const opacity = useRef(new Animated.Value(0)).current; // start transparent
+  const opacity = useRef(new Animated.Value(1)).current;
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
 
@@ -21,42 +21,21 @@ export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
   }, []);
 
   useEffect(() => {
-    if (!visible) onFinish?.();
-  }, [onFinish, visible]);
-
-  // Fade IN as soon as we're ready (right after native splash hides)
-  useEffect(() => {
     if (!ready) return;
-
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: Platform.OS !== 'web',
-    }).start();
-  }, [opacity, ready]);
-
-  // Fade OUT after the hold duration
-  useEffect(() => {
-    if (!ready) return;
-
     let cancelled = false;
     const animation = Animated.timing(opacity, {
       toValue: 0,
-      duration: 300,
+      duration: 400,
       useNativeDriver: Platform.OS !== 'web',
     });
     const timer = setTimeout(async () => {
       const reduceMotion = await AccessibilityInfo.isReduceMotionEnabled().catch(() => false);
       if (cancelled) return;
-      if (reduceMotion) {
-        setVisible(false);
-      } else {
-        animation.start(({ finished }) => {
-          if (finished) setVisible(false);
-        });
-      }
-    }, 1200);
-
+      if (reduceMotion) setVisible(false);
+      else animation.start(({ finished }) => {
+        if (finished) setVisible(false);
+      });
+    }, 3000);
     return () => {
       cancelled = true;
       clearTimeout(timer);
@@ -64,21 +43,36 @@ export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
     };
   }, [opacity, ready]);
 
-  if (!visible) return onFinish ? null : <Redirect href="/" />;
+  useEffect(() => {
+    if (!visible) onFinish?.();
+  }, [onFinish, visible]);
+
+  if (!visible) return onFinish ? null : <Redirect href="/welcome" />;
 
   return (
     <Animated.View
       onLayout={reveal}
-      accessibilityLabel="Rentanything is loading"
+      accessibilityLabel="Rent It is loading"
       accessibilityRole="progressbar"
       style={[styles.container, { opacity }]}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
+      <View
+        pointerEvents="none"
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+        style={styles.backgroundArt}>
+        <View style={styles.peachCircle} />
+        <View style={styles.topRing} />
+        <View style={styles.creamCircle} />
+        <View style={styles.bottomRing} />
+      </View>
       <Image
-        source={require('@/assets/images/splash-icon.png')}
+        source={require('@/assets/images/rent-it-logo.png')}
         contentFit="contain"
+        accessibilityLabel="Rent It"
         style={styles.logo}
       />
-      <Text style={styles.name}>Rentanything</Text>
+      <Text style={styles.tagline}>Access more. Own less.</Text>
     </Animated.View>
   );
 }
@@ -86,19 +80,52 @@ export default function SplashScreen({ onFinish }: { onFinish?: () => void }) {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFill,
-    zIndex: 1000,
-    backgroundColor: '#208AEF',
+    backgroundColor: '#FAF7F0',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo: { width: 76, height: 76 },
-  name: {
-    position: 'absolute',
-    top: '50%',
-    marginTop: 64,
-    color: '#FFFFFF',
-    fontSize: 28,
-    fontWeight: '700',
-    letterSpacing: -0.5,
+  backgroundArt: {
+    ...StyleSheet.absoluteFill,
+    overflow: 'hidden',
   },
+  peachCircle: {
+    position: 'absolute',
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    top: -140,
+    right: -130,
+    backgroundColor: '#FBE4D5',
+  },
+  topRing: {
+    position: 'absolute',
+    width: 330,
+    height: 330,
+    borderRadius: 165,
+    top: -135,
+    right: -125,
+    borderWidth: 1,
+    borderColor: '#EEDACA',
+  },
+  creamCircle: {
+    position: 'absolute',
+    width: 280,
+    height: 280,
+    borderRadius: 140,
+    bottom: -145,
+    left: -110,
+    backgroundColor: '#EFE8D8',
+  },
+  bottomRing: {
+    position: 'absolute',
+    width: 310,
+    height: 310,
+    borderRadius: 155,
+    bottom: -135,
+    left: -120,
+    borderWidth: 1,
+    borderColor: '#E4DCCB',
+  },
+  logo: { width: '100%', maxWidth: 280, aspectRatio: 1320 / 690 },
+  tagline: { marginTop: 16, color: '#686B6C', fontSize: 16 },
 });

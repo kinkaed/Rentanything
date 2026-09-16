@@ -19,11 +19,13 @@ export default function RootLayout() {
         {/* Mount navigation immediately so the splash fades into a rendered screen. */}
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="index" />
-          <Stack.Screen name="welcome" options={{ animation: 'fade' }} />
-          <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+          <Stack.Screen name="welcome" options={{ animation: 'none' }} />
+          <Stack.Screen name="(tabs)" options={{ animation: 'none' }} />
           <Stack.Screen name="splash" />
           <Stack.Screen name="signup" />
           <Stack.Screen name="login" />
+          <Stack.Screen name="home" />
+          <Stack.Screen name="search" />
         </Stack>
         <Modal
           visible={showStartupSplash}
@@ -44,3 +46,4 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
 });
+

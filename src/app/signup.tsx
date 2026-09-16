@@ -36,13 +36,8 @@ const CreateAccountScreen = () => {
   };
 
   const handleSignUp = () => {
-    if (!fullName.trim()) return setMessage('Enter your full name.');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      return setMessage('Enter a valid email address.');
-    }
-    if (password.length < 8) return setMessage('Use a password with at least 8 characters.');
-    if (!agreedToTerms) return setMessage('Please agree to the Terms of Service and Privacy Policy.');
-    setMessage('Registration is not available yet. Your account has not been created.');
+    // Temporary preview navigation; no account is created.
+    router.replace('/home');
   };
 
   const handleSignIn = () => {
@@ -166,7 +161,7 @@ const CreateAccountScreen = () => {
             accessibilityRole="button"
             style={({ pressed }) => [
               styles.signUpButton,
-              pressed && canSubmit && styles.signUpButtonPressed,
+              pressed && styles.signUpButtonPressed,
             ]}
             onPress={handleSignUp}
           >
@@ -397,4 +392,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 });
+
+
 

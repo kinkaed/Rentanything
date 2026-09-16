@@ -47,7 +47,7 @@ export default function WelcomeScreen() {
   const pages = useRef<FlatList<(typeof PAGES)[number]>>(null);
   const [activePage, setActivePage] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
-  const enterApp = () => router.replace('/home');
+  const skipIntroduction = () => router.push('/signup');
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -55,7 +55,7 @@ export default function WelcomeScreen() {
       <View style={[styles.screen, { width }]}>
         <View style={styles.toolbar}>
           <Pressable
-            onPress={enterApp}
+            onPress={skipIntroduction}
             accessibilityRole="button"
             accessibilityLabel="Skip introduction"
             style={({ pressed }) => [styles.skip, pressed && styles.pressed]}>

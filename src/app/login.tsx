@@ -31,13 +31,8 @@ export default function LoginScreen() {
   }
 
   function signIn() {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      return setMessage('Enter a valid email address.');
-    }
-    if (!password) {
-      return setMessage('Enter your password.');
-    }
-    setMessage('Sign-in is not available yet. Please check back soon.');
+    // Temporary preview navigation; no authentication is performed.
+    router.replace('/home');
   }
 
   return (
@@ -285,3 +280,5 @@ back: {
     fontWeight: '700',
   },
 });
+
+
